@@ -8,10 +8,14 @@ import { useLocalSearchParams, router, usePathname } from "expo-router";
 const Search = () => {
   const path = usePathname();
   const params = useLocalSearchParams<{ query?: string }>();
-  const [search, setSearch] = useState(params.query);
+  const [search, setSearch] = useState(params.query || '');
 
   const debouncedSearch = useDebouncedCallback((text: string) => {
-    router.setParams({ query: text });
+    try {
+      router.setParams({ query: text });
+    } catch (error) {
+      console.error('Search error:', error);
+    }
   }, 500);
 
   const handleSearch = (text: string) => {

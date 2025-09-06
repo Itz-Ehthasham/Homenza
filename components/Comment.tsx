@@ -12,14 +12,18 @@ const Comment = ({ item }: Props) => {
   return (
     <View className="flex flex-col items-start">
       <View className="flex flex-row items-center">
-        <Image source={{ uri: item.avatar }} className="size-14 rounded-full" />
+        <Image 
+          source={{ uri: item.avatar || 'https://via.placeholder.com/56x56' }} 
+          className="size-14 rounded-full" 
+          defaultSource={{ uri: 'https://via.placeholder.com/56x56' }}
+        />
         <Text className="text-base text-black-300 text-start font-rubik-bold ml-3">
-          {item.name}
+          {item.name || 'Anonymous'}
         </Text>
       </View>
 
       <Text className="text-black-200 text-base font-rubik mt-2">
-        {item.review}
+        {item.review || 'No review available'}
       </Text>
 
       <View className="flex flex-row items-center w-full justify-between mt-4">
@@ -34,7 +38,7 @@ const Comment = ({ item }: Props) => {
           </Text>
         </View>
         <Text className="text-black-100 text-sm font-rubik">
-          {new Date(item.$createdAt).toDateString()}
+          {item.$createdAt ? new Date(item.$createdAt).toDateString() : 'Recent'}
         </Text>
       </View>
     </View>

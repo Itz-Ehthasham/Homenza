@@ -11,14 +11,18 @@ const Filters = () => {
   );
 
   const handleCategoryPress = (category: string) => {
-    if (selectedCategory === category) {
-      setSelectedCategory("");
-      router.setParams({ filter: "" });
-      return;
-    }
+    try {
+      if (selectedCategory === category) {
+        setSelectedCategory("");
+        router.setParams({ filter: "" });
+        return;
+      }
 
-    setSelectedCategory(category);
-    router.setParams({ filter: category });
+      setSelectedCategory(category);
+      router.setParams({ filter: category });
+    } catch (error) {
+      console.error('Filter error:', error);
+    }
   };
 
   return (

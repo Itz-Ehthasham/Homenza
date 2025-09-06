@@ -42,7 +42,13 @@ const Explore = () => {
     });
   }, [params.filter, params.query]);
 
-  const handleCardPress = (id: string) => router.push(`/properties/${id}`);
+  const handleCardPress = (id: string) => {
+    try {
+      router.push(`/properties/${id}`);
+    } catch (error) {
+      console.error('Navigation error:', error);
+    }
+  };
 
   return (
     <SafeAreaView className="h-full bg-white">

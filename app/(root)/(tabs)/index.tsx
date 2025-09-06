@@ -53,7 +53,13 @@ const Home = () => {
     });
   }, [params.filter, params.query]);
 
-  const handleCardPress = (id: string) => router.push(`/properties/${id}`);
+  const handleCardPress = (id: string) => {
+    try {
+      router.push(`/properties/${id}`);
+    } catch (error) {
+      console.error('Navigation error:', error);
+    }
+  };
 
   return (
     <SafeAreaView className="h-full bg-white">
@@ -79,8 +85,9 @@ const Home = () => {
             <View className="flex flex-row items-center justify-between mt-5">
               <View className="flex flex-row">
                 <Image
-                  source={{ uri: user?.avatar }}
+                  source={{ uri: user?.avatar || 'https://via.placeholder.com/48x48' }}
                   className="size-12 rounded-full"
+                  defaultSource={{ uri: 'https://via.placeholder.com/48x48' }}
                 />
 
                 <View className="flex flex-col items-start ml-2 justify-center">

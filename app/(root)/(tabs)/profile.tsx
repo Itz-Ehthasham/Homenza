@@ -46,15 +46,22 @@ const SettingsItem = ({
 );
 
 const Profile = () => {
-  const { user, refetch } = useGlobalContext();
+  const { user, refetch, logoutGuest } = useGlobalContext();
 
   const handleLogout = async () => {
-    const result = await logout();
-    if (result) {
+    if (user?.$id === "guest") {
+      // Handle guest logout
+      logoutGuest();
       Alert.alert("Success", "Logged out successfully");
-      refetch();
     } else {
-      Alert.alert("Error", "Failed to logout");
+      // Handle regular user logout
+      const result = await logout();
+      if (result) {
+        Alert.alert("Success", "Logged out successfully");
+        refetch();
+      } else {
+        Alert.alert("Error", "Failed to logout");
+      }
     }
   };
 
@@ -72,14 +79,15 @@ const Profile = () => {
         <View className="flex flex-row justify-center mt-5">
           <View className="flex flex-col items-center relative mt-5">
             <Image
-              source={{ uri: user?.avatar }}
+              source={{ uri: user?.avatar || 'https://via.placeholder.com/176x176' }}
               className="size-44 relative rounded-full"
+              defaultSource={{ uri: 'https://via.placeholder.com/176x176' }}
             />
             <TouchableOpacity className="absolute bottom-11 right-2">
               <Image source={icons.edit} className="size-9" />
             </TouchableOpacity>
 
-            <Text className="text-2xl font-rubik-bold mt-2">{user?.name}</Text>
+            <Text className="text-2xl font-rubik-bold mt-2">{user?.name || 'User'}</Text>
           </View>
         </View>
 

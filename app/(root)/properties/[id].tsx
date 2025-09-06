@@ -38,9 +38,10 @@ const Property = () => {
       >
         <View className="relative w-full" style={{ height: windowHeight / 2 }}>
           <Image
-            source={{ uri: property?.image }}
+            source={{ uri: property?.image || 'https://via.placeholder.com/400x300' }}
             className="size-full"
             resizeMode="cover"
+            defaultSource={{ uri: 'https://via.placeholder.com/400x300' }}
           />
           <Image
             source={images.whiteGradient}
@@ -75,20 +76,20 @@ const Property = () => {
 
         <View className="px-5 mt-7 flex gap-2">
           <Text className="text-2xl font-rubik-extrabold">
-            {property?.name}
+            {property?.name || 'Property Name'}
           </Text>
 
           <View className="flex flex-row items-center gap-3">
             <View className="flex flex-row items-center px-4 py-2 bg-primary-100 rounded-full">
               <Text className="text-xs font-rubik-bold text-primary-300">
-                {property?.type}
+                {property?.type || 'Property'}
               </Text>
             </View>
 
             <View className="flex flex-row items-center gap-2">
               <Image source={icons.star} className="size-5" />
               <Text className="text-black-200 text-sm mt-1 font-rubik-medium">
-                {property?.rating} ({property?.reviews.length} reviews)
+                {property?.rating || '0'} ({property?.reviews?.length || 0} reviews)
               </Text>
             </View>
           </View>
@@ -98,19 +99,19 @@ const Property = () => {
               <Image source={icons.bed} className="size-4" />
             </View>
             <Text className="text-black-300 text-sm font-rubik-medium ml-2">
-              {property?.bedrooms} Beds
+              {property?.bedrooms || 0} Beds
             </Text>
             <View className="flex flex-row items-center justify-center bg-primary-100 rounded-full size-10 ml-7">
               <Image source={icons.bath} className="size-4" />
             </View>
             <Text className="text-black-300 text-sm font-rubik-medium ml-2">
-              {property?.bathrooms} Baths
+              {property?.bathrooms || 0} Baths
             </Text>
             <View className="flex flex-row items-center justify-center bg-primary-100 rounded-full size-10 ml-7">
               <Image source={icons.area} className="size-4" />
             </View>
             <Text className="text-black-300 text-sm font-rubik-medium ml-2">
-              {property?.area} sqft
+              {property?.area || 0} sqft
             </Text>
           </View>
 
@@ -122,16 +123,17 @@ const Property = () => {
             <View className="flex flex-row items-center justify-between mt-4">
               <View className="flex flex-row items-center">
                 <Image
-                  source={{ uri: property?.agent.avatar }}
+                  source={{ uri: property?.agent?.avatar || 'https://via.placeholder.com/56x56' }}
                   className="size-14 rounded-full"
+                  defaultSource={{ uri: 'https://via.placeholder.com/56x56' }}
                 />
 
                 <View className="flex flex-col items-start justify-center ml-3">
                   <Text className="text-lg text-black-300 text-start font-rubik-bold">
-                    {property?.agent.name}
+                    {property?.agent?.name || 'Agent Name'}
                   </Text>
                   <Text className="text-sm text-black-200 text-start font-rubik-medium">
-                    {property?.agent.email}
+                    {property?.agent?.email || 'agent@email.com'}
                   </Text>
                 </View>
               </View>
@@ -148,7 +150,7 @@ const Property = () => {
               Overview
             </Text>
             <Text className="text-black-200 text-base font-rubik mt-2">
-              {property?.description}
+              {property?.description || 'No description available'}
             </Text>
           </View>
 
@@ -157,7 +159,7 @@ const Property = () => {
               Facilities
             </Text>
 
-            {property?.facilities.length > 0 && (
+            {property?.facilities && property.facilities.length > 0 && (
               <View className="flex flex-row flex-wrap items-start justify-start mt-2 gap-5">
                 {property?.facilities.map((item: string, index: number) => {
                   const facility = facilities.find(
@@ -219,7 +221,7 @@ const Property = () => {
             <View className="flex flex-row items-center justify-start mt-4 gap-2">
               <Image source={icons.location} className="w-7 h-7" />
               <Text className="text-black-200 text-sm font-rubik-medium">
-                {property?.address}
+                {property?.address || 'Address not available'}
               </Text>
             </View>
 
@@ -229,13 +231,13 @@ const Property = () => {
             />
           </View>
 
-          {property?.reviews.length > 0 && (
+          {property?.reviews && property.reviews.length > 0 && (
             <View className="mt-7">
               <View className="flex flex-row items-center justify-between">
                 <View className="flex flex-row items-center">
                   <Image source={icons.star} className="size-6" />
                   <Text className="text-black-300 text-xl font-rubik-bold ml-2">
-                    {property?.rating} ({property?.reviews.length} reviews)
+                    {property?.rating || '0'} ({property?.reviews?.length || 0} reviews)
                   </Text>
                 </View>
 
@@ -264,7 +266,7 @@ const Property = () => {
               numberOfLines={1}
               className="text-primary-300 text-start text-2xl font-rubik-bold"
             >
-              ${property?.price}
+              ${property?.price || '0'}
             </Text>
           </View>
 

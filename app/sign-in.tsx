@@ -16,7 +16,7 @@ import icons from "@/constants/icons";
 import images from "@/constants/images";
 
 const Auth = () => {
-  const { refetch, loading, isLogged } = useGlobalContext();
+  const { refetch, loading, isLogged, loginAsGuest } = useGlobalContext();
 
   if (!loading && isLogged) return <Redirect href="/" />;
 
@@ -27,6 +27,10 @@ const Auth = () => {
     } else {
       Alert.alert("Error", "Failed to login");
     }
+  };
+
+  const handleGuestLogin = () => {
+    loginAsGuest();
   };
 
   return (
@@ -44,7 +48,7 @@ const Auth = () => {
 
         <View className="px-10">
           <Text className="text-base text-center uppercase font-rubik text-black-200">
-            Welcome To Real Scout
+            Welcome To Homenza
           </Text>
 
           <Text className="text-3xl font-rubik-bold text-black-300 text-center mt-2">
@@ -52,24 +56,39 @@ const Auth = () => {
             <Text className="text-primary-300">Your Ideal Home</Text>
           </Text>
 
-          <Text className="text-lg font-rubik text-black-200 text-center mt-12">
-            Login to Real Scout with Google
+          <Text className="text-base font-rubik text-black-200 text-center mt-8">
+            Login to Homenza with Google
           </Text>
 
           <TouchableOpacity
             onPress={handleLogin}
-            className="bg-white shadow-md shadow-zinc-300 rounded-full w-full py-4 mt-5"
+            className="bg-white shadow-md shadow-zinc-300 rounded-full w-full py-3 mt-4"
           >
             <View className="flex flex-row items-center justify-center">
               <Image
                 source={icons.google}
-                className="w-5 h-5"
+                className="w-4 h-4"
                 resizeMode="contain"
               />
-              <Text className="text-lg font-rubik-medium text-black-300 ml-2">
+              <Text className="text-base font-rubik-medium text-black-300 ml-2">
                 Continue with Google
               </Text>
             </View>
+          </TouchableOpacity>
+
+          <View className="flex flex-row items-center my-3">
+            <View className="flex-1 h-px bg-black-100" />
+            <Text className="mx-3 text-xs font-rubik text-black-200">OR</Text>
+            <View className="flex-1 h-px bg-black-100" />
+          </View>
+
+          <TouchableOpacity
+            onPress={handleGuestLogin}
+            className="border border-primary-300 rounded-full w-full py-3"
+          >
+            <Text className="text-base font-rubik-medium text-primary-300 text-center">
+              Continue as Guest
+            </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
