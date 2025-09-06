@@ -19,8 +19,8 @@
     <br />
     
     <div align="center">
-      <a href="https://expo.dev/accounts/ehthasham/projects/homenza/builds/cac13d3b-2e96-4a09-90d4-216d612ce0b1" target="_blank">
-        <img src="https://img.shields.io/badge/Download-Homenza%20App-blue?style=for-the-badge&logo=expo" alt="Download Homenza App" />
+      <a href="https://expo.dev/accounts/ehthasham/projects/homenza/builds/cac13d3b-2e96-4a09-90d4-216d612ce0b1" target="_blank" style="color: #007bff; text-decoration: none;">
+        📱 <strong>Download Homenza App</strong>
       </a>
     </div>
 </div>
@@ -32,8 +32,6 @@
 3. 🔋 [Features](#features)
 4. 🤸 [Quick Start](#quick-start)
 5. 🕸️ [Snippets](#snippets)
-6. 🔗 [Assets](#links)
-7. 🚀 [More](#more)
 
 ## 🏡 About Homenza
 
@@ -449,24 +447,4 @@ export const useAppwrite = <T, P extends Record<string, string | number>>({
 
 </details>
 
-## <a name="links">🔗 Assets</a>
 
-Assets and snippets used in the project can be found in the **[video kit](https://jsm.dev/rn25-restate)**.
-
-Appwrite Database Setup can be found [here](https://jsmastery.notion.site/Database-Setup-16260f3cbaf3807f8fb6cbed8d1e84fd)
-
-<a href="https://jsm.dev/rn25-restate" target="_blank">
-  <img src="assets/readme/videokit.webp" alt="Video Kit Banner">
-</a>
-
-## <a name="more">🚀 More</a>
-
-**Advance your skills with Next.js Pro Course**
-
-Enjoyed creating this project? Dive deeper into our PRO courses for a richer learning adventure. They're packed with
-
-detailed explanations, cool features, and exercises to boost your skills. Give it a go!
-
-<a href="https://jsm.dev/rn25-jsm" target="_blank">
-   <img src="assets/readme/jsmpro.webp" alt="Project Banner">
-</a>
